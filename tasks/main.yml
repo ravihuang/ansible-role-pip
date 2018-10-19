@@ -1,6 +1,7 @@
 ---
 - name: Add EPEL repository.
-  shell: yum install -y epel-release
+  yum: 
+    name: epel-release
 
 - name: Ensure Pip is installed.
   package:
@@ -8,7 +9,9 @@
     state: present
 
 - name: Update Pip
-  shell: pip install pip -U -i https://pypi.douban.com/simple
+  pip: 
+    name: pip
+    extra_args: -U -i https://pypi.douban.com/simple
 
 - name: Ensure pip_install_packages are installed.
   pip:
